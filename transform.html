@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/transform.css.js"></script>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        #box {
+            width: 200px;
+            height: 200px;
+            background: deepskyblue;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+<script type="text/javascript">
+    var box = document.getElementById('box');
+    console.log(box)
+    transfromcss(box, 'translateX', 200);
+
+    // console.log(transfromcss(box, 'translateX'));
+    // function transfromcss(node, name, value) {
+    //     if (!node.transform) {
+    //         node.transform = {};
+    //     }
+    //     if (arguments.length > 2) {
+    //         node.transform[name] = value;
+    //         var result = '';
+    //         for (var item in node.transform) {
+    //             console.log(item)
+    //             switch (item) {
+    //                 case 'rotate':
+    //                 case 'skew':
+    //                 case 'skewX':
+    //                 case 'skewY':
+    //                     result += item + '(' + node.transform[item] + 'deg)'
+    //                     break;
+    //                 case 'scale':
+    //                 case 'scaleX':
+    //                 case 'scaleY':
+    //                     result += item + '(' + node.transform[item] + 'deg)'
+    //                     break;
+    //                 case 'translate':
+    //                 case 'translateX':
+    //                 case 'translateY':
+    //                     result += item + '(' + node.transform[item] + 'px)'
+    //                     break;
+    //             }
+    //             ;
+    //
+    //         }
+    //         ;
+    //         node.style.transform = result;
+    //         console.log(result)
+    //     } else {
+    //     }
+    // }
+</script>
+</body>
+</html>
