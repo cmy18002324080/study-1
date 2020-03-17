@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <title>Title</title>
+    <link rel="stylesheet/less" type="text/css" href="css/index.less">
+    <script src="js/less.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/transform.css.js"></script>
+    <script src="js/index.js"></script>
+</head>
+<body>
+<div id="wrap">
+    <header id="header">
+        <div id="headerTop">
+            <h1 id="logo">
+                <a href="javascript:;">
+                    <img src="img/logo.png" alt="">
+                </a>
+            </h1>
+            <a id="menubtn" class="menuBtn_close"></a>
+            <div id="nav">
+                <a href="javascript:;" id="serchBtn">搜索</a>
+                <a href="javascript:;">登录</a>
+                <a href="javascript:;">注册</a>
+            </div>
+        </div>
+        <!--头部下部分-->
+        <form id="serch">
+            <input type="text" placeholder="请输入搜索内容">
+            <input type="submit" value="搜索">
+        </form>
+        <ul id="mask">
+            <li>
+                <a href="javascript:;">
+                    首页
+                </a>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    MV
+                </a>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    悦单
+                </a>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    V榜
+                </a>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    音悦
+                </a>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    商城
+                </a>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    节目
+                </a>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    饭团
+                </a>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    资讯
+                </a>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    我的家
+                </a>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    APP下载
+                </a>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    热门应用
+                </a>
+            </li>
+        </ul>
+    </header>
+    <div id="content">
+        <nav id="navs">
+            <ul id="navsList">
+                <li class="active">
+                    <a href="javascript:;">
+                        首页
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;">
+                        MV
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;">
+                        悦单
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;">
+                        V榜
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;">
+                        音悦
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;">
+                        商城
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;">
+                        节目
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;">
+                        饭团
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;">
+                        资讯
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;">
+                        我的家
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;">
+                        APP下载
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;">
+                        热门应用
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+    // document.addEventListener("touchstart", function (event) {
+    //     event.preventDefault();
+    // })
+    //    rem适配
+    var styleN = document.createElement('style');
+    var width = document.documentElement.clientWidth / 16 + "px";
+    styleN.innerHTML = "html{font-size:" + width + " !important;}";
+    document.head.append(styleN);
+    drag();
+
+    function drag() {
+        var navs = document.getElementById('navs');
+        var navsList = document.getElementById('navsList');
+        var stratX = 0;
+        var eleX = 0;
+        navs.addEventListener("touchstart", function (event) {
+            var touch = event.changedTouches[0];
+            stratX = touch.clientX;
+            eleX = transfromcss(navsList, 'translateX')
+            console.log(eleX)
+        });
+        navs.addEventListener("touchmove", function (event) {
+            var touch = event.changedTouches[0];
+            var nowX = touch.clientX;
+            var disX = nowX - stratX;
+            // console.log(disX);
+            var translateX = eleX + disX;
+            var minX = document.documentElement.clientWidth - navsList.offsetWidth;
+            if (translateX > 0) {
+                var scale = 1 - translateX / document.documentElement.clientWidth;
+                translateX = translateX * scale;
+                // translateX=0;
+            } else if (translateX < document.documentElement.clientWidth - navsList.offsetWidth) {
+                // translateX = document.documentElement.clientWidth - navsList.offsetWidth;
+                var over = minX - translateX;
+                var scale = 1 - over / document.documentElement.clientWidth;
+                translateX = minX - over * scale;
+
+            }
+            transfromcss(navsList, 'translateX', translateX)
+        })
+    }
+</script>
+</html>
